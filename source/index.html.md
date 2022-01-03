@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -40,6 +41,21 @@ curl "http://api.lmc-auto.com/v1/data?table_name=country&result_format=json" \
   -H "Authorization: awesomelmc"
 ```
 
+```python
+import requests
+
+url = "https://api.lmc-auto.com/v1/data?table_name=country&result_format=json"
+
+payload={}
+headers = {
+  'Authorization': 'Basic awesomelmc'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -72,8 +88,8 @@ Parameter | Description
 table_name | Table name
 result_format | json or csv
 region | This is needed for some tables
-filter | (optional) refered to https://github.com/TRUEPIC/queryql/blob/development/DOCS.md#filtering
-sort | (optional) refered to https://github.com/TRUEPIC/queryql/blob/development/DOCS.md#sorting
+filter | (optional) please refer to [QueryQL](https://github.com/TRUEPIC/queryql/blob/development/DOCS.md#filtering)
+sort | (optional) please refer to [QueryQL](https://github.com/TRUEPIC/queryql/blob/development/DOCS.md#sorting)
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
