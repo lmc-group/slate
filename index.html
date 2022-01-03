@@ -352,20 +352,20 @@
 <p>Please contact our sales to create you an account. You will get a username and password.
 They are always required to authen to our API.</p>
 
-<p><code>Authorization: awesomelmc</code></p>
+<p><code>Authorization: lmcawesome</code></p>
 
 <aside class="notice">
-Assume that <code>awesomelmc</code> is your API key, it is base 64 encoded of your username and password.
+Assume that <code>lmcawesome</code> is your API key, it is base 64 encoded of your username and password.
 </aside>
 <h1 id='data-endpoint'>Data Endpoint</h1><h2 id='retrieve-table-data'>Retrieve table data</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://api.lmc-auto.com/v1/data?table_name=country&amp;result_format=json"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: awesomelmc"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: lmcawesome"</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.lmc-auto.com/v1/data?table_name=country&amp;result_format=json"</span>
 
 <span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Basic awesomelmc'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Basic lmcawesome'</span>
 <span class="p">}</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
@@ -392,7 +392,7 @@ Assume that <code>awesomelmc</code> is your API key, it is base 64 encoded of yo
 </span></code></pre></div>
 <p>This endpoint retrieves a specific table.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/data</code></p>
+<p><code>GET http://api.lmc-auto.com/v1/data</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -421,11 +421,86 @@ Assume that <code>awesomelmc</code> is your API key, it is base 64 encoded of yo
 <td>(optional) please refer to <a href="https://github.com/TRUEPIC/queryql/blob/development/DOCS.md#sorting">QueryQL</a></td>
 </tr>
 </tbody></table>
+<h1 id='download-endpoint'>Download Endpoint</h1><h2 id='list-downloadable-contents'>List downloadable contents</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://api.lmc-auto.com/v1/downloads"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: lmcawesome"</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h1 id='download-endpoint'>Download Endpoint</h1><h2 id='list-downloadable-contents'>List downloadable contents</h2><h2 id='retrieve-downloadable-content'>Retrieve downloadable content</h2><h1 id='errors'>Errors</h1>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.lmc-auto.com/v1/downloads"</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Basic lmcawesome'</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"LMCA_[SA_LVPF(BS)]_Capa_Data.csv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"LMCA_[SA_LVPF(BS)]_Data.csv"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint lists the downloadable contents.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://api.lmc-auto.com/v1/downloads</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>None</td>
+<td>None</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-downloadable-content'>Retrieve downloadable content</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://api.lmc-auto.com/v1/download?file_name=example.csv"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: lmcawesome"</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.lmc-auto.com/v1/download?file_name=example.csv"</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Basic lmcawesome'</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns CSV comma separated like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>PublishVersion,Country,Manufacturer,Year,Plant_Code,Plant_Name,Local_Manufacturing_Partner,Location,Publish_Region,Market,Last_Production_Actual,City,Latitude,Longitude,Capacity,Utilization
+20210301,Brazil,Grupo CAOA,2016,ACA,Anapolis,,Goias,South America,Splits Mercosur,2020-12-01 00:00:00,Anapolis,-16.3996088,-48.906932,86400,0.26265116275
+20210301,Brazil,Grupo CAOA,2017,ACA,Anapolis,,Goias,South America,Splits Mercosur,2020-12-01 00:00:00,Anapolis,-16.3996088,-48.906932,86400,0.22533720933333337
+20210301,Brazil,Grupo CAOA,2018,ACA,Anapolis,,Goias,South America,Splits Mercosur,2020-12-01 00:00:00,Anapolis,-16.3996088,-48.906932,86400,0.24545348833333336
+20210301,Brazil,Grupo CAOA,2019,ACA,Anapolis,,Goias,South America,Splits Mercosur,2020-12-01 00:00:00,Anapolis,-16.3996088,-48.906932,86400,0.27709302316666667
+</code></pre></div>
+<p>This endpoint retrieves a specific downloadable content.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET http://api.lmc-auto.com/v1/download</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>file_name</td>
+<td>The file name that you retrieve from List downloadable contents API</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
 <p>The API uses the following error codes:</p>
 
 <table><thead>
